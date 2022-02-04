@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(const App());
@@ -7,15 +8,52 @@ void main() {
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  void playSounds(int note) {
+    final player = AudioCache();
+    player.play('sounds/note$note.wav');
+  }
+
+  Widget buildKey(int note, final color) {
+    return Expanded(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(16.0),
+          primary: Colors.white,
+          backgroundColor: color,
+          textStyle: const TextStyle(fontSize: 20),
+        ),
+        onPressed: () {
+          playSounds(note);
+        },
+        child: const Text(''),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Xylophone',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              buildKey(1, Colors.red),
+              buildKey(2, Colors.orange),
+              buildKey(3, Colors.yellow),
+              buildKey(4, Colors.green),
+              buildKey(5, Colors.teal),
+              buildKey(6, Colors.blue),
+              buildKey(7, Colors.purple),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

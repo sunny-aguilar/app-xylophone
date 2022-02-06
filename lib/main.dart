@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-void main() {
-  runApp(const App());
-}
+void main() => runApp(const App());
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -13,7 +11,7 @@ class App extends StatelessWidget {
     player.play('sounds/note$note.wav');
   }
 
-  Widget buildKey(int note, final color) {
+  Widget buildKey({final note, final color}) {
     return Expanded(
       child: TextButton(
         style: TextButton.styleFrom(
@@ -43,13 +41,13 @@ class App extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              buildKey(1, Colors.red),
-              buildKey(2, Colors.orange),
-              buildKey(3, Colors.yellow),
-              buildKey(4, Colors.green),
-              buildKey(5, Colors.teal),
-              buildKey(6, Colors.blue),
-              buildKey(7, Colors.purple),
+              buildKey(note: 1, color: Colors.red),
+              buildKey(note: 2, color: Colors.orange),
+              buildKey(note: 3, color: Colors.yellow),
+              buildKey(note: 4, color: Colors.green),
+              buildKey(note: 5, color: Colors.teal),
+              buildKey(note: 6, color: Colors.blue),
+              buildKey(note: 7, color: Colors.purple),
             ],
           ),
         ),
